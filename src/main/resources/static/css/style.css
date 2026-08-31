@@ -1,0 +1,52 @@
+:root{
+    --primary:#2F5D50;
+    --primary-hover:#264A40;
+    --background:#F8F7F3;
+    --text:#2D2D2D;
+    --gold:#E6B325;
+}
+
+body{
+    font-family: 'Inter', sans-serif;
+    background: var(--background);
+    color: var(--text);
+}
+
+a{
+    text-decoration:none;
+}
+
+.btn-primary{
+    background:var(--primary);
+    border:none;
+}
+
+.btn-primary:hover{
+    background:var(--primary-hover);
+}
+
+.card{
+    border:none;
+    border-radius:18px;
+    transition:.25s ease;
+}
+
+.card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 12px 30px rgba(0,0,0,.08);
+}
+
+
+.navbar-brand{
+    color:#2F5D50;
+}
+
+.nav-link{
+    color:#2D2D2D;
+    font-weight:500;
+    transition:.2s;
+}
+
+.nav-link:hover{
+    color:#2F5D50;
+}

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title th:text="${book.title} + ' - BookVerse'">
+        Book Details
+    </title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+    <!-- Our CSS -->
+    <link rel="stylesheet"
+          th:href="@{/css/style.css}">
+
+</head>
+
+
+<body>
+
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg bg-white shadow-sm py-3">
+
+    <div class="container">
+
+        <a class="navbar-brand fw-bold fs-2"
+           th:href="@{/}">
+            📚 BookVerse
+        </a>
+
+        <a class="btn btn-outline-success"
+           th:href="@{/}">
+            <i class="bi bi-arrow-left"></i>
+            Back to Search
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- Book Details -->
+<div class="container py-5">
+
+    <div class="row justify-content-center align-items-start">
+
+
+        <!-- Book Cover -->
+        <div class="col-lg-4 col-md-5 text-center mb-4">
+
+            <img th:src="${book.image}"
+                 th:alt="${book.title}"
+                 class="img-fluid rounded shadow"
+                 style="max-height: 500px; object-fit: cover;">
+
+        </div>
+
+
+        <!-- Book Information -->
+        <div class="col-lg-6 col-md-7">
+
+
+            <!-- Title -->
+            <h1 class="fw-bold mb-3"
+                th:text="${book.title}">
+                Book Title
+            </h1>
+
+
+            <!-- Author -->
+            <p class="fs-5 text-muted mb-3">
+
+                <i class="bi bi-person"></i>
+
+                <strong>Author:</strong>
+
+                <span th:text="${book.author}">
+                    Author
+                </span>
+
+            </p>
+
+
+            <!-- Favorites -->
+            <div class="mb-4">
+
+
+                <!-- Not Favorite Yet -->
+                <form th:if="${!isFavorite}"
+                      th:action="@{/book/{id}/favorite(id=${book.id})}"
+                      method="post">
+
+                    <button type="submit"
+                            class="btn btn-success btn-lg">
+
+                        <i class="bi bi-heart"></i>
+
+                        Add to Favorites
+
+                    </button>
+
+                </form>
+
+
+                <!-- Already Favorite -->
+                <button th:if="${isFavorite}"
+                        class="btn btn-outline-success btn-lg"
+                        disabled>
+
+                    <i class="bi bi-heart-fill"></i>
+
+                    Added to Favorites
+
+                </button>
+
+
+            </div>
+
+
+            <!-- Category -->
+            <p>
+
+                <i class="bi bi-bookmark"></i>
+
+                <strong>Category:</strong>
+
+                <span th:text="${book.category}">
+                    Category
+                </span>
+
+            </p>
+
+
+            <!-- Rating -->
+            <p>
+
+                ⭐
+
+                <strong>Rating:</strong>
+
+                <span th:text="${book.rating}">
+                    0
+                </span>
+
+                / 5
+
+                <span class="text-muted">
+
+                    (
+                    <span th:text="${book.ratingsCount}">
+                        0
+                    </span>
+
+                    ratings
+                    )
+
+                </span>
+
+            </p>
+
+
+            <!-- Published Date -->
+            <p>
+
+                <i class="bi bi-calendar3"></i>
+
+                <strong>Published:</strong>
+
+                <span th:text="${book.publishedDate}">
+                    Unknown
+                </span>
+
+            </p>
+
+
+            <!-- Page Count -->
+            <p>
+
+                <i class="bi bi-file-text"></i>
+
+                <strong>Pages:</strong>
+
+                <span th:text="${book.pageCount}">
+                    0
+                </span>
+
+            </p>
+
+
+            <hr class="my-4">
+
+
+            <!-- Description -->
+            <h4 class="fw-bold mb-3">
+                Description
+            </h4>
+
+            <p class="text-muted"
+               style="line-height: 1.8;"
+               th:text="${book.description}">
+
+                Book description
+
+            </p>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js">
+</script>
+
+
+</body>
+
+</html>
