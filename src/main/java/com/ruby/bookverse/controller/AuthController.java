@@ -13,19 +13,23 @@ public class AuthController {
 
     private final UserService userService;
 
+
     public AuthController(UserService userService) {
         this.userService = userService;
     }
 
 
-    // Show Register Page
+    // =========================
+    // REGISTER
+    // =========================
+
     @GetMapping("/register")
     public String showRegisterPage() {
+
         return "register";
     }
 
 
-    // Register User
     @PostMapping("/register")
     public String registerUser(
             @RequestParam String name,
@@ -42,14 +46,17 @@ public class AuthController {
     }
 
 
-    // Show Login Page
+    // =========================
+    // LOGIN
+    // =========================
+
     @GetMapping("/login")
     public String showLoginPage() {
+
         return "login";
     }
 
 
-    // Login User
     @PostMapping("/login")
     public String loginUser(
             @RequestParam String email,
@@ -62,6 +69,7 @@ public class AuthController {
                         password
                 );
 
+
         if (user != null) {
 
             session.setAttribute(
@@ -72,6 +80,21 @@ public class AuthController {
             return "redirect:/";
         }
 
+
         return "redirect:/login";
+    }
+
+
+    // =========================
+    // LOGOUT
+    // =========================
+
+    @GetMapping("/logout")
+    public String logout(
+            HttpSession session) {
+
+        session.invalidate();
+
+        return "redirect:/";
     }
 }
