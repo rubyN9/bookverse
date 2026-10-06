@@ -2,29 +2,18 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <title>BookVerse | Discover</title>
 
-    <title>BookVerse</title>
-
-
-    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
           rel="stylesheet">
 
-
-    <!-- Bootstrap Icons -->
     <link rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 
-
-    <!-- Fonts -->
-    <link rel="preconnect"
-          href="https://fonts.googleapis.com">
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect"
           href="https://fonts.gstatic.com"
           crossorigin>
@@ -32,1630 +21,206 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
           rel="stylesheet">
 
-
-    <style>
-
-        * {
-            box-sizing: border-box;
-        }
-
-
-        body {
-            margin: 0;
-            background: #f8f6f2;
-            font-family: 'Inter', sans-serif;
-            color: #1d1d1d;
-        }
-
-
-        a {
-            text-decoration: none;
-        }
-
-
-        .app-layout {
-            min-height: 100vh;
-            display: flex;
-        }
-
-
-        /* =========================
-           SIDEBAR
-        ========================= */
-
-        .sidebar {
-            width: 240px;
-            height: 100vh;
-
-            position: fixed;
-            top: 0;
-            left: 0;
-
-            background: #ffffff;
-
-            padding: 30px 20px;
-
-            border-right: 1px solid #ece8e1;
-
-            overflow-y: auto;
-        }
-
-
-        .logo {
-            font-family: 'Playfair Display', serif;
-
-            font-size: 28px;
-            font-weight: 700;
-
-            color: #123f31;
-
-            margin-bottom: 45px;
-
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-
-        .menu-title {
-            font-size: 11px;
-            color: #999;
-
-            margin-bottom: 14px;
-
-            padding-left: 12px;
-
-            letter-spacing: 1px;
-        }
-
-
-        .menu-link {
-            display: flex;
-
-            align-items: center;
-
-            gap: 14px;
-
-            padding: 12px 14px;
-
-            margin-bottom: 7px;
-
-            border-radius: 12px;
-
-            color: #222;
-
-            font-size: 14px;
-
-            transition: 0.2s;
-        }
-
-
-        .menu-link:hover {
-            background: #f3eee7;
-            color: #123f31;
-        }
-
-
-        .menu-link.active {
-            background: #f1eade;
-
-            color: #123f31;
-
-            font-weight: 600;
-        }
-
-
-        .menu-link i {
-            font-size: 18px;
-        }
-
-
-        .sidebar-divider {
-            border-top: 1px solid #ece8e1;
-
-            margin: 25px 0;
-        }
-
-
-        .sidebar-message {
-            margin-top: 30px;
-
-            background: #154b3a;
-
-            color: white;
-
-            border-radius: 16px;
-
-            padding: 22px 18px;
-        }
-
-
-        .sidebar-message h5 {
-            font-family: 'Playfair Display', serif;
-
-            font-size: 20px;
-
-            margin-bottom: 10px;
-        }
-
-
-        .sidebar-message p {
-            font-size: 12px;
-
-            margin: 0;
-
-            opacity: 0.85;
-        }
-
-
-        /* =========================
-           MAIN
-        ========================= */
-
-        .main {
-            margin-left: 240px;
-
-            width: calc(100% - 240px);
-
-            padding: 32px 36px;
-        }
-
-
-        /* =========================
-           TOP BAR
-        ========================= */
-
-        .topbar {
-            display: flex;
-
-            justify-content: space-between;
-
-            align-items: center;
-
-            margin-bottom: 28px;
-        }
-
-
-        .page-title {
-            font-family: 'Playfair Display', serif;
-
-            font-size: 46px;
-            font-weight: 700;
-
-            margin: 0 0 5px 0;
-        }
-
-
-        .page-subtitle {
-            color: #777;
-
-            margin: 0;
-
-            font-size: 15px;
-        }
-
-
-        .profile {
-            display: flex;
-
-            align-items: center;
-
-            gap: 12px;
-
-            font-size: 14px;
-
-            font-weight: 600;
-        }
-
-
-        .notification {
-            font-size: 19px;
-
-            margin-right: 6px;
-        }
-
-
-        .profile-icon {
-            width: 40px;
-            height: 40px;
-
-            border-radius: 50%;
-
-            background: #e5e5e5;
-
-            display: flex;
-
-            justify-content: center;
-
-            align-items: center;
-
-            color: #123f31;
-        }
-
-
-        /* =========================
-           SEARCH
-        ========================= */
-
-        .search-box {
-            background: white;
-
-            border-radius: 15px;
-
-            padding: 10px 12px;
-
-            display: flex;
-
-            align-items: center;
-
-            gap: 10px;
-
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
-
-            margin-bottom: 34px;
-        }
-
-
-        .search-icon {
-            color: #777;
-
-            font-size: 18px;
-
-            margin-left: 8px;
-        }
-
-
-        .search-input {
-            flex: 1;
-
-            border: none;
-
-            outline: none;
-
-            background: transparent;
-
-            padding: 12px;
-
-            font-size: 14px;
-        }
-
-
-        .search-button {
-            border: none;
-
-            background: #124b3a;
-
-            color: white;
-
-            border-radius: 10px;
-
-            padding: 12px 32px;
-
-            font-size: 14px;
-
-            font-weight: 600;
-
-            transition: 0.2s;
-        }
-
-
-        .search-button:hover {
-            background: #0d392c;
-        }
-
-
-        /* =========================
-           CONTENT
-        ========================= */
-
-        .content-grid {
-            display: grid;
-
-            grid-template-columns:
-                    minmax(0, 1fr) 270px;
-
-            gap: 28px;
-        }
-
-
-        .section-header {
-            display: flex;
-
-            justify-content: space-between;
-
-            align-items: center;
-
-            margin-bottom: 18px;
-        }
-
-
-        .section-title {
-            font-family: 'Playfair Display', serif;
-
-            font-size: 23px;
-
-            font-weight: 700;
-
-            margin: 0;
-        }
-
-
-        /* =========================
-           BOOK CARDS
-        ========================= */
-
-        .book-grid {
-            display: grid;
-
-            grid-template-columns:
-                    repeat(5, minmax(0, 1fr));
-
-            gap: 16px;
-        }
-
-
-        .book-link {
-            color: #1d1d1d;
-        }
-
-
-        .book-card {
-            background: white;
-
-            border: 1px solid #efebe5;
-
-            border-radius: 13px;
-
-            overflow: hidden;
-
-            height: 100%;
-
-            transition: 0.2s;
-        }
-
-
-        .book-card:hover {
-            transform: translateY(-4px);
-
-            box-shadow: 0 10px 25px
-            rgba(0, 0, 0, 0.08);
-        }
-
-
-        .book-cover {
-            width: 100%;
-
-            height: 205px;
-
-            object-fit: cover;
-
-            background: #e6e6e6;
-        }
-
-
-        .book-card-body {
-            padding: 13px;
-        }
-
-
-        .book-title {
-            font-size: 14px;
-
-            font-weight: 700;
-
-            line-height: 1.35;
-
-            margin-bottom: 6px;
-
-            display: -webkit-box;
-
-            -webkit-line-clamp: 2;
-
-            -webkit-box-orient: vertical;
-
-            overflow: hidden;
-
-            min-height: 38px;
-        }
-
-
-        .book-author {
-            font-size: 12px;
-
-            color: #777;
-
-            white-space: nowrap;
-
-            overflow: hidden;
-
-            text-overflow: ellipsis;
-
-            margin-bottom: 12px;
-        }
-
-
-        .book-bottom {
-            display: flex;
-
-            justify-content: space-between;
-
-            align-items: center;
-        }
-
-
-        .rating {
-            font-size: 12px;
-        }
-
-
-        .rating-star {
-            color: #efad00;
-        }
-
-
-        .no-rating {
-            color: #999;
-        }
-
-
-        .heart-icon {
-            color: #777;
-
-            font-size: 16px;
-        }
-
-
-        /* =========================
-           EMPTY HOME
-        ========================= */
-
-        .welcome-card {
-            background: white;
-
-            border: 1px solid #efebe5;
-
-            border-radius: 16px;
-
-            padding: 36px;
-
-            min-height: 250px;
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            text-align: center;
-        }
-
-
-        .welcome-icon {
-            font-size: 42px;
-
-            color: #124b3a;
-
-            margin-bottom: 15px;
-        }
-
-
-        .welcome-title {
-            font-family: 'Playfair Display', serif;
-
-            font-size: 25px;
-
-            font-weight: 700;
-        }
-
-
-        .welcome-text {
-            color: #777;
-
-            font-size: 14px;
-
-            max-width: 450px;
-
-            margin: auto;
-        }
-
-
-        /* =========================
-           CATEGORIES
-        ========================= */
-
-        .categories-section {
-            margin-top: 35px;
-        }
-
-
-        .category-grid {
-            display: grid;
-
-            grid-template-columns:
-                    repeat(5, minmax(0, 1fr));
-
-            gap: 13px;
-        }
-
-
-        .category-card {
-            background: white;
-
-            border: 1px solid #efebe5;
-
-            border-radius: 13px;
-
-            padding: 17px;
-
-            display: flex;
-
-            align-items: center;
-
-            gap: 12px;
-
-            color: #222;
-
-            transition: 0.2s;
-        }
-
-
-        .category-card:hover {
-            transform: translateY(-2px);
-
-            box-shadow: 0 7px 18px
-            rgba(0, 0, 0, 0.06);
-
-            color: #123f31;
-        }
-
-
-        .category-icon {
-            width: 38px;
-            height: 38px;
-
-            min-width: 38px;
-
-            border-radius: 10px;
-
-            background: #f2ece3;
-
-            color: #124b3a;
-
-            display: flex;
-
-            justify-content: center;
-
-            align-items: center;
-
-            font-size: 18px;
-        }
-
-
-        .category-name {
-            font-weight: 600;
-
-            font-size: 13px;
-        }
-
-
-        .category-subtitle {
-            color: #888;
-
-            font-size: 10px;
-
-            margin-top: 2px;
-        }
-
-
-        /* =========================
-           QUOTE
-        ========================= */
-
-        .quote-box {
-            margin-top: 27px;
-
-            background: #f2ece3;
-
-            border-radius: 16px;
-
-            padding: 25px 28px;
-        }
-
-
-        .quote-text {
-            font-family: 'Playfair Display', serif;
-
-            font-size: 17px;
-
-            margin-bottom: 6px;
-        }
-
-
-        .quote-author {
-            color: #777;
-
-            font-size: 11px;
-        }
-
-
-        /* =========================
-           RIGHT COLUMN
-        ========================= */
-
-        .side-card {
-            background: white;
-
-            border: 1px solid #efebe5;
-
-            border-radius: 16px;
-
-            padding: 19px;
-
-            margin-bottom: 18px;
-        }
-
-
-        .side-card-title {
-            font-family: 'Playfair Display', serif;
-
-            font-size: 18px;
-
-            font-weight: 700;
-
-            margin-bottom: 18px;
-        }
-
-
-        .top-book {
-            display: flex;
-
-            align-items: center;
-
-            gap: 10px;
-
-            margin-bottom: 16px;
-        }
-
-
-        .top-book:last-child {
-            margin-bottom: 0;
-        }
-
-
-        .top-book-cover {
-            width: 42px;
-            height: 60px;
-
-            object-fit: cover;
-
-            border-radius: 5px;
-
-            flex-shrink: 0;
-        }
-
-
-        .top-book-info {
-            min-width: 0;
-
-            flex: 1;
-        }
-
-
-        .top-book-title {
-            font-size: 12px;
-
-            font-weight: 600;
-
-            white-space: nowrap;
-
-            overflow: hidden;
-
-            text-overflow: ellipsis;
-        }
-
-
-        .top-book-author {
-            font-size: 10px;
-
-            color: #777;
-
-            white-space: nowrap;
-
-            overflow: hidden;
-
-            text-overflow: ellipsis;
-
-            margin-top: 3px;
-        }
-
-
-        .top-book-rating {
-            font-size: 11px;
-
-            white-space: nowrap;
-        }
-
-
-        .side-empty {
-            color: #888;
-
-            font-size: 12px;
-
-            line-height: 1.6;
-        }
-
-
-        /* =========================
-           RESPONSIVE
-        ========================= */
-
-        @media (max-width: 1200px) {
-
-            .book-grid {
-                grid-template-columns:
-                        repeat(4, minmax(0, 1fr));
-            }
-
-            .category-grid {
-                grid-template-columns:
-                        repeat(3, minmax(0, 1fr));
-            }
-
-        }
-
-
-        @media (max-width: 992px) {
-
-            .sidebar {
-                display: none;
-            }
-
-            .main {
-                margin-left: 0;
-
-                width: 100%;
-            }
-
-            .content-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .right-column {
-                display: none;
-            }
-
-        }
-
-
-        @media (max-width: 768px) {
-
-            .main {
-                padding: 24px 18px;
-            }
-
-            .page-title {
-                font-size: 36px;
-            }
-
-            .profile span {
-                display: none;
-            }
-
-            .book-grid {
-                grid-template-columns:
-                        repeat(2, minmax(0, 1fr));
-            }
-
-            .category-grid {
-                grid-template-columns:
-                        repeat(2, minmax(0, 1fr));
-            }
-
-            .search-button {
-                padding: 11px 18px;
-            }
-
-        }
-
-    </style>
-
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/home.css}">
 </head>
-
 
 <body>
 
-
 <div class="app-layout">
 
+    <div th:replace="~{fragments/sidebar :: sidebar('discover')}"></div>
 
-    <!-- =========================
-         SIDEBAR
-    ========================== -->
+    <main class="main-content">
 
-    <aside class="sidebar">
-
-
-        <div class="logo">
-
-            📖
-
-            <span>
-                BookVerse
-            </span>
-
-        </div>
-
-
-        <div class="menu-title">
-            MENU
-        </div>
-
-
-        <!-- Discover -->
-
-        <a th:href="@{/}"
-           class="menu-link active">
-
-            <i class="bi bi-house-fill"></i>
-
-            Discover
-
-        </a>
-
-
-        <!-- Categories -->
-
-        <a href="#categories"
-           class="menu-link">
-
-            <i class="bi bi-grid"></i>
-
-            Categories
-
-        </a>
-
-
-        <!-- Favorites -->
-
-        <a th:href="@{/favorites}"
-           class="menu-link">
-
-            <i class="bi bi-heart"></i>
-
-            Favorites
-
-        </a>
-
-
-        <div class="sidebar-divider"></div>
-
-
-        <!-- NOT LOGGED IN -->
-
-        <div th:if="${session.loggedInUser == null}">
-
-
-            <a th:href="@{/login}"
-               class="menu-link">
-
-                <i class="bi bi-box-arrow-in-right"></i>
-
-                Login
-
-            </a>
-
-
-            <a th:href="@{/register}"
-               class="menu-link">
-
-                <i class="bi bi-person-plus"></i>
-
-                Register
-
-            </a>
-
-
-        </div>
-
-
-        <!-- LOGGED IN -->
-
-        <div th:if="${session.loggedInUser != null}">
-
-
-            <a th:href="@{/logout}"
-               class="menu-link">
-
-                <i class="bi bi-box-arrow-right"></i>
-
-                Log out
-
-            </a>
-
-
-        </div>
-
-
-        <!-- Sidebar Message -->
-
-        <div class="sidebar-message">
-
-            <h5>
-                Read more,
-                <br>
-                discover more.
-            </h5>
-
-            <p>
-                Build your personal library
-                and keep the books you love.
-            </p>
-
-        </div>
-
-
-    </aside>
-
-
-    <!-- =========================
-         MAIN
-    ========================== -->
-
-    <main class="main">
-
-
-        <!-- =========================
-             TOP BAR
-        ========================== -->
-
-        <div class="topbar">
-
-
-            <div>
-
-                <h1 class="page-title">
-                    Discover
-                </h1>
-
-                <p class="page-subtitle">
-                    Find your next favorite book.
-                </p>
-
-            </div>
-
-
-            <!-- Logged User -->
-
-            <div class="profile"
-                 th:if="${session.loggedInUser != null}">
-
-
-                <i class="bi bi-bell notification"></i>
-
-
-                <div class="profile-icon">
-
-                    <i class="bi bi-person-fill"></i>
-
-                </div>
-
-
-                <span th:text="${session.loggedInUser.name}">
-                    User
-                </span>
-
-
-            </div>
-
-
-            <!-- Guest -->
-
-            <div class="profile"
-                 th:if="${session.loggedInUser == null}">
-
-
-                <div class="profile-icon">
-
-                    <i class="bi bi-person"></i>
-
-                </div>
-
-
-                <span>
-                    Guest
-                </span>
-
-
-            </div>
-
-
-        </div>
-
-
-        <!-- =========================
-             SEARCH
-        ========================== -->
+        <h1 class="discover-title">Discover</h1>
 
         <form th:action="@{/}"
               method="get"
-              class="search-box">
+              class="discover-search">
 
-
-            <i class="bi bi-search search-icon"></i>
-
+            <i class="bi bi-search"></i>
 
             <input type="text"
                    name="q"
-                   class="search-input"
-                   placeholder="Search books, authors, or ISBN..."
+                   th:value="${query}"
+                   placeholder="Search by title, author, keyword, or ISBN"
+                   autocomplete="off"
                    required>
 
-
-            <button type="submit"
-                    class="search-button">
-
-                Search
-
-            </button>
-
+            <button type="submit">Search</button>
 
         </form>
 
+        <section class="section-block"
+                 th:if="${query == null or #strings.isEmpty(query)}">
 
-        <!-- =========================
-             CONTENT
-        ========================== -->
+            <h2 class="section-title">Categories</h2>
 
-        <div class="content-grid">
+            <div class="category-grid-home">
 
-
-            <!-- LEFT -->
-
-            <div>
-
-
-                <!-- =========================
-                     SEARCH RESULTS
-                ========================== -->
-
-                <section th:if="${books != null}">
-
-
-                    <div class="section-header">
-
-                        <h2 class="section-title">
-                            Search Results
-                        </h2>
-
+                <a th:href="@{/(q='subject:Fiction')}" class="category-card-home">
+                    <div class="category-icon-home">
+                        <i class="bi bi-book"></i>
                     </div>
+                    <div class="category-name-home">Fiction</div>
+                </a>
 
-
-                    <div class="book-grid">
-
-
-                        <a th:each="book : ${books}"
-                           th:href="@{/book/{id}(id=${book.id})}"
-                           class="book-link">
-
-
-                            <div class="book-card">
-
-
-                                <!-- Cover exists -->
-
-                                <img th:if="${book.image != null and !#strings.isEmpty(book.image)}"
-                                     th:src="${book.image}"
-                                     th:alt="${book.title}"
-                                     class="book-cover">
-
-
-                                <!-- No cover -->
-
-                                <img th:unless="${book.image != null and !#strings.isEmpty(book.image)}"
-                                     src="https://placehold.co/300x450?text=No+Cover"
-                                     alt="No Cover"
-                                     class="book-cover">
-
-
-                                <div class="book-card-body">
-
-
-                                    <!-- Title -->
-
-                                    <div class="book-title"
-                                         th:text="${book.title}">
-
-                                        Book Title
-
-                                    </div>
-
-
-                                    <!-- Author -->
-
-                                    <div class="book-author"
-                                         th:text="${book.author}">
-
-                                        Author
-
-                                    </div>
-
-
-                                    <!-- Bottom -->
-
-                                    <div class="book-bottom">
-
-
-                                        <!-- Rating available -->
-
-                                        <span class="rating"
-                                              th:if="${book.rating != null and book.rating > 0}">
-
-                                            <span class="rating-star">
-                                                ★
-                                            </span>
-
-                                            <span th:text="${book.rating}">
-                                                4.5
-                                            </span>
-
-                                        </span>
-
-
-                                        <!-- Rating unavailable -->
-
-                                        <span class="rating no-rating"
-                                              th:if="${book.rating == null or book.rating <= 0}">
-
-                                            No rating
-
-                                        </span>
-
-
-                                        <i class="bi bi-heart heart-icon"></i>
-
-
-                                    </div>
-
-
-                                </div>
-
-
-                            </div>
-
-
-                        </a>
-
-
+                <a th:href="@{/(q='subject:Self-Help')}" class="category-card-home">
+                    <div class="category-icon-home">
+                        <i class="bi bi-compass"></i>
                     </div>
+                    <div class="category-name-home">Self-Help</div>
+                </a>
 
-
-                </section>
-
-
-                <!-- =========================
-                     HOME BEFORE SEARCH
-                ========================== -->
-
-                <section th:if="${books == null}">
-
-
-                    <div class="section-header">
-
-                        <h2 class="section-title">
-                            Welcome to BookVerse
-                        </h2>
-
+                <a th:href="@{/(q='subject:Philosophy')}" class="category-card-home">
+                    <div class="category-icon-home">
+                        <i class="bi bi-journal-text"></i>
                     </div>
+                    <div class="category-name-home">Philosophy</div>
+                </a>
 
-
-                    <div class="welcome-card">
-
-
-                        <div>
-
-
-                            <div class="welcome-icon">
-
-                                <i class="bi bi-book"></i>
-
-                            </div>
-
-
-                            <div class="welcome-title">
-
-                                Discover your next great read
-
-                            </div>
-
-
-                            <p class="welcome-text mt-2">
-
-                                Search for books by title,
-                                author or ISBN and save your
-                                favorites to your personal library.
-
-                            </p>
-
-
-                        </div>
-
-
+                <a th:href="@{/(q='subject:Fantasy')}" class="category-card-home">
+                    <div class="category-icon-home">
+                        <i class="bi bi-stars"></i>
                     </div>
+                    <div class="category-name-home">Fantasy</div>
+                </a>
 
-
-                </section>
-
-
-                <!-- =========================
-                     CATEGORIES
-                ========================== -->
-
-                <section class="categories-section"
-                         id="categories">
-
-
-                    <div class="section-header">
-
-                        <h2 class="section-title">
-                            Browse by Category
-                        </h2>
-
+                <a th:href="@{/(q='subject:History')}" class="category-card-home">
+                    <div class="category-icon-home">
+                        <i class="bi bi-bank"></i>
                     </div>
-
-
-                    <div class="category-grid">
-
-
-                        <!-- Fiction -->
-
-                        <a th:href="@{/(q='subject:Fiction')}"
-                           class="category-card">
-
-
-                            <div class="category-icon">
-
-                                <i class="bi bi-book"></i>
-
-                            </div>
-
-
-                            <div>
-
-                                <div class="category-name">
-                                    Fiction
-                                </div>
-
-                                <div class="category-subtitle">
-                                    Explore books
-                                </div>
-
-                            </div>
-
-
-                        </a>
-
-
-                        <!-- Business -->
-
-                        <a th:href="@{/(q='subject:Business')}"
-                           class="category-card">
-
-
-                            <div class="category-icon">
-
-                                <i class="bi bi-briefcase"></i>
-
-                            </div>
-
-
-                            <div>
-
-                                <div class="category-name">
-                                    Business
-                                </div>
-
-                                <div class="category-subtitle">
-                                    Explore books
-                                </div>
-
-                            </div>
-
-
-                        </a>
-
-
-                        <!-- Self Help -->
-
-                        <a th:href="@{/(q='subject:Self-Help')}"
-                           class="category-card">
-
-
-                            <div class="category-icon">
-
-                                <i class="bi bi-lightbulb"></i>
-
-                            </div>
-
-
-                            <div>
-
-                                <div class="category-name">
-                                    Self-Help
-                                </div>
-
-                                <div class="category-subtitle">
-                                    Explore books
-                                </div>
-
-                            </div>
-
-
-                        </a>
-
-
-                        <!-- Science -->
-
-                        <a th:href="@{/(q='subject:Science')}"
-                           class="category-card">
-
-
-                            <div class="category-icon">
-
-                                <i class="bi bi-beaker"></i>
-
-                            </div>
-
-
-                            <div>
-
-                                <div class="category-name">
-                                    Science
-                                </div>
-
-                                <div class="category-subtitle">
-                                    Explore books
-                                </div>
-
-                            </div>
-
-
-                        </a>
-
-
-                        <!-- History -->
-
-                        <a th:href="@{/(q='subject:History')}"
-                           class="category-card">
-
-
-                            <div class="category-icon">
-
-                                <i class="bi bi-bank"></i>
-
-                            </div>
-
-
-                            <div>
-
-                                <div class="category-name">
-                                    History
-                                </div>
-
-                                <div class="category-subtitle">
-                                    Explore books
-                                </div>
-
-                            </div>
-
-
-                        </a>
-
-
+                    <div class="category-name-home">History</div>
+                </a>
+
+                <a th:href="@{/(q='subject:Science')}" class="category-card-home">
+                    <div class="category-icon-home">
+                        <i class="bi bi-lightbulb"></i>
                     </div>
+                    <div class="category-name-home">Science</div>
+                </a>
 
-
-                </section>
-
-
-                <!-- =========================
-                     QUOTE
-                ========================== -->
-
-                <div class="quote-box">
-
-
-                    <div class="quote-text">
-
-                        “A room without books is like a body without a soul.”
-
+                <a th:href="@{/(q='subject:Business')}" class="category-card-home">
+                    <div class="category-icon-home">
+                        <i class="bi bi-briefcase"></i>
                     </div>
+                    <div class="category-name-home">Business</div>
+                </a>
 
-
-                    <div class="quote-author">
-
-                        — Marcus Tullius Cicero
-
+                <a th:href="@{/(q='subject:Biography')}" class="category-card-home">
+                    <div class="category-icon-home">
+                        <i class="bi bi-person"></i>
                     </div>
+                    <div class="category-name-home">Biography</div>
+                </a>
 
+                <a th:href="@{/(q='subject:Technology')}" class="category-card-home">
+                    <div class="category-icon-home">
+                        <i class="bi bi-laptop"></i>
+                    </div>
+                    <div class="category-name-home">Technology</div>
+                </a>
 
-                </div>
-
+                <a th:href="@{/(q='subject:Psychology')}" class="category-card-home">
+                    <div class="category-icon-home">
+                        <i class="bi bi-chat-square-text"></i>
+                    </div>
+                    <div class="category-name-home">Psychology</div>
+                </a>
 
             </div>
 
+        </section>
 
-            <!-- =========================
-                 RIGHT COLUMN
-            ========================== -->
+        <section th:if="${books != null}" class="section-block">
 
-            <aside class="right-column">
+            <div class="results-header">
 
+                <div>
+                    <h2 class="section-title results-title">Results</h2>
 
-                <div class="side-card">
-
-
-                    <div class="side-card-title">
-
-                        Top Rated
-
+                    <div class="results-query"
+                         th:if="${query != null}"
+                         th:text="${query}">
+                        Query
                     </div>
+                </div>
 
+                <a th:href="@{/}" class="clear-button">Clear</a>
 
-                    <!-- Top books from current results -->
+            </div>
 
-                    <div th:if="${books != null and !#lists.isEmpty(books)}">
+            <div class="results-grid"
+                 th:if="${!#lists.isEmpty(books)}">
 
+                <a th:each="book : ${books}"
+                   th:href="@{/book/{id}(id=${book.id})}"
+                   class="result-link">
 
-                        <a th:each="book, status : ${books}"
-                           th:if="${status.index < 4}"
-                           th:href="@{/book/{id}(id=${book.id})}"
-                           class="top-book text-dark">
+                    <article class="result-card">
 
-
-                            <!-- Cover -->
+                        <div class="result-cover-area">
 
                             <img th:if="${book.image != null and !#strings.isEmpty(book.image)}"
                                  th:src="${book.image}"
                                  th:alt="${book.title}"
-                                 class="top-book-cover">
-
+                                 class="result-cover">
 
                             <img th:unless="${book.image != null and !#strings.isEmpty(book.image)}"
-                                 src="https://placehold.co/90x130?text=No+Cover"
+                                 src="https://placehold.co/300x450?text=No+Cover"
                                  alt="No Cover"
-                                 class="top-book-cover">
+                                 class="result-cover">
 
+                        </div>
 
-                            <!-- Info -->
+                        <div class="result-info">
 
-                            <div class="top-book-info">
-
-
-                                <div class="top-book-title"
-                                     th:text="${book.title}">
-
-                                    Book
-
-                                </div>
-
-
-                                <div class="top-book-author"
-                                     th:text="${book.author}">
-
-                                    Author
-
-                                </div>
-
-
+                            <div class="result-title"
+                                 th:text="${book.title}">
+                                Book Title
                             </div>
 
+                            <div class="result-author"
+                                 th:text="${book.author != null ? book.author : 'Unknown author'}">
+                                Author
+                            </div>
 
-                            <!-- Rating -->
+                            <div class="result-bottom">
 
-                            <div class="top-book-rating"
-                                 th:if="${book.rating != null and book.rating > 0}">
-
-                                <span class="rating-star">
-                                    ★
+                                <span th:if="${book.rating != null and book.rating > 0}">
+                                    <span class="rating-star">★</span>
+                                    <span th:text="${book.rating}">4.5</span>
                                 </span>
 
-                                <span th:text="${book.rating}">
-                                    4.5
+                                <span th:if="${book.rating == null or book.rating <= 0}">
+                                    No rating
                                 </span>
 
-                            </div>
-
-
-                            <div class="top-book-rating no-rating"
-                                 th:if="${book.rating == null or book.rating <= 0}">
-
-                                —
+                                <i class="bi bi-arrow-up-right"></i>
 
                             </div>
 
+                        </div>
 
-                        </a>
+                    </article>
 
+                </a>
 
-                    </div>
+            </div>
 
+            <div class="no-results"
+                 th:if="${#lists.isEmpty(books)}">
+                No books found.
+            </div>
 
-                    <!-- No search yet -->
-
-                    <div th:if="${books == null}"
-                         class="side-empty">
-
-                        Search for a book and the
-                        highest-rated results will
-                        appear here.
-
-                    </div>
-
-
-                    <!-- Empty results -->
-
-                    <div th:if="${books != null and #lists.isEmpty(books)}"
-                         class="side-empty">
-
-                        No books found.
-
-                    </div>
-
-
-                </div>
-
-
-                <!-- Logged User Card -->
-
-                <div class="side-card"
-                     th:if="${session.loggedInUser != null}">
-
-
-                    <div class="side-card-title">
-
-                        Your Library
-
-                    </div>
-
-
-                    <p class="side-empty">
-
-                        Keep the books you love
-                        together in your personal
-                        BookVerse library.
-
-                    </p>
-
-
-                    <a th:href="@{/favorites}"
-                       class="btn btn-success w-100 mt-2">
-
-                        <i class="bi bi-heart me-1"></i>
-
-                        View Favorites
-
-                    </a>
-
-
-                </div>
-
-
-            </aside>
-
-
-        </div>
-
+        </section>
 
     </main>
 
-
 </div>
 
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js">
-</script>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
-
 </html>

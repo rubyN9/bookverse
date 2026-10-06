@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+<aside th:fragment="sidebar(activePage)"
+       class="sidebar">
+
+    <a th:href="@{/}"
+       class="logo">
+
+        <div class="logo-mark">
+            <i class="bi bi-book"></i>
+        </div>
+
+        <span>BookVerse</span>
+    </a>
+
+    <div class="menu-title">
+        MENU
+    </div>
+
+    <a th:href="@{/}"
+       class="menu-link"
+       th:classappend="${activePage == 'discover'} ? ' active' : ''">
+
+        <i class="bi bi-compass"></i>
+        <span>Discover</span>
+    </a>
+
+    <div class="sidebar-divider"></div>
+
+    <div class="menu-title">
+        MY LIBRARY
+    </div>
+
+    <a th:href="@{/library}"
+       class="menu-link"
+       th:classappend="${activePage == 'library'} ? ' active' : ''">
+
+        <i class="bi bi-collection"></i>
+        <span>All Books</span>
+    </a>
+
+    <a th:href="@{/want-to-read}"
+       class="menu-link"
+       th:classappend="${activePage == 'want-to-read'} ? ' active' : ''">
+
+        <i class="bi bi-bookmark"></i>
+        <span>Want to Read</span>
+    </a>
+
+    <a th:href="@{/reading}"
+       class="menu-link"
+       th:classappend="${activePage == 'reading'} ? ' active' : ''">
+
+        <i class="bi bi-book-half"></i>
+        <span>Reading</span>
+    </a>
+
+    <a th:href="@{/read}"
+       class="menu-link"
+       th:classappend="${activePage == 'read'} ? ' active' : ''">
+
+        <i class="bi bi-check-circle"></i>
+        <span>Read</span>
+    </a>
+
+    <a th:href="@{/favorites}"
+       class="menu-link"
+       th:classappend="${activePage == 'favorites'} ? ' active' : ''">
+
+        <i class="bi bi-heart"></i>
+        <span>Favorites</span>
+    </a>
+
+    <div th:if="${session.loggedInUser != null}">
+
+        <div class="sidebar-divider"></div>
+
+        <div class="menu-title">
+            ACCOUNT
+        </div>
+
+        <div class="sidebar-user">
+
+            <div class="sidebar-user-icon">
+                <i class="bi bi-person"></i>
+            </div>
+
+            <div class="sidebar-user-info">
+
+                <div class="sidebar-user-name"
+                     th:text="${session.loggedInUser.name}">
+                    User
+                </div>
+
+            </div>
+
+        </div>
+
+        <a th:href="@{/logout}"
+           class="menu-link logout-link">
+
+            <i class="bi bi-box-arrow-right"></i>
+            <span>Logout</span>
+        </a>
+
+    </div>
+
+    <div th:if="${session.loggedInUser == null}">
+
+        <div class="sidebar-divider"></div>
+
+        <div class="menu-title">
+            ACCOUNT
+        </div>
+
+        <a th:href="@{/login}"
+           class="menu-link">
+
+            <i class="bi bi-box-arrow-in-right"></i>
+            <span>Login</span>
+        </a>
+
+        <a th:href="@{/register}"
+           class="menu-link">
+
+            <i class="bi bi-person-plus"></i>
+            <span>Register</span>
+        </a>
+
+    </div>
+
+</aside>
+
+</body>
+</html>

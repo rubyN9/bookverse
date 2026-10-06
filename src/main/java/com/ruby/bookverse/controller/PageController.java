@@ -9,10 +9,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class PageController {
 
-    private final BookSearchService service;
+    private final BookSearchService bookSearchService;
 
-    public PageController(BookSearchService service) {
-        this.service = service;
+    public PageController(
+            BookSearchService bookSearchService) {
+
+        this.bookSearchService = bookSearchService;
     }
 
     @GetMapping("/")
@@ -21,10 +23,18 @@ public class PageController {
             Model model) {
 
         if (q != null && !q.isBlank()) {
-            model.addAttribute("books", service.searchBooks(q));
-            model.addAttribute("query", q);
-        }
+            String query = q.trim();
 
+            model.addAttribute(
+                    "books",
+                    bookSearchService.searchBooks(query)
+            );
+
+            model.addAttribute(
+                    "query",
+                    query
+            );
+        }
         return "home";
     }
 }
